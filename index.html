@@ -1,3 +1,6 @@
+<!doctype html>
+<html lang="en">
+<head>
 <title>Tattva</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Tattva: a prototype APAAR-based student registry for technical education, built with sample data for SIH 2026 problem statement 26263.">
@@ -30,25 +33,7 @@
   --r-sm: 6px; --r: 8px; --r-lg: 12px;
   --wrap: 1240px;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --navy: #091327; --brand: #15336d; --brand-2: #1d438c; --brand-soft: #16233d;
-    --action: #7ea7f8; --action-hover: #a0bffa; --action-soft: #1a2a48; --on-action: #08101e;
-    --saffron: #f0a040; --saffron-ink: #f5b867; --saffron-soft: #2c2112; --flag-green: #4caf50;
-    --page: #0c111b; --surface: #131a26; --surface-2: #161e2c; --sunken: #1b2433;
-    --line: #263145; --line-strong: #3a4660;
-    --ink: #e7ebf2; --ink-2: #b2bccd; --ink-3: #8b96a9; --on-dark: #ffffff; --on-dark-2: #b9c6e2;
-    --ok: #79d9a1; --ok-icon: #3fbf6f; --ok-soft: #12301e;
-    --warn: #f4b866; --warn-icon: #fa9b2e; --warn-soft: #33240e;
-    --bad: #ffa29a; --bad-icon: #ef5a51; --bad-soft: #3b1614;
-    --info: #7adcd4; --info-icon: #2cc4c0; --info-soft: #0f2d2f;
-    --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --track: #222c3d;
-    --q1: #1a3358; --q2: #1f4a85; --q3: #2a66b6; --q4: #3987e5; --q5: #6da7ec; --q6: #a9cdf6;
-    --shadow-1: 0 1px 2px rgba(0, 0, 0, .35); --shadow-2: 0 6px 12px rgba(0, 0, 0, .3), 0 18px 40px rgba(0, 0, 0, .35);
-    --overlay: rgba(3, 7, 14, .66);
-    color-scheme: dark;
-  }
-}
+
 :root[data-theme="dark"] {
   --navy: #091327; --brand: #15336d; --brand-2: #1d438c; --brand-soft: #16233d;
   --action: #7ea7f8; --action-hover: #a0bffa; --action-soft: #1a2a48; --on-action: #08101e;
@@ -726,7 +711,62 @@ details.faq p { padding: 0 4px 16px; color: var(--ink-2); max-width: 78ch; }
 #main { overflow-x: clip; }
 .page > *, .pub-body > *, .stack > * { min-width: 0; }
 .table-wrap, .card { position: relative; }
+
+/* TATTVA RESPONSIVE PATCH v1 */
+:root { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
+html, body { width: 100%; margin: 0; }
+body { min-width: 320px; overflow-x: hidden; }
+#app { width: 100%; min-width: 0; }
+img, svg, video, canvas { max-width: 100%; }
+.wrap { width: 100%; }
+@media (max-width: 900px) {
+  .hero-in { grid-template-columns: minmax(0, 1fr); gap: 24px; padding-block: 30px 34px; }
+  .hero-art { width: 100%; max-width: 460px; justify-self: center; }
+  .hero-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero-stats > div:nth-child(2) { border-right: 0; }
+  .hero-stats > div:nth-child(3) { border-right: 1px solid var(--line); }
+  .hero-stats > div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+  .hero-stats > div:nth-child(4) { border-right: 0; }
+  .corners { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .section { padding-block: 34px 8px; }
+  .brandbar-in { gap: 12px; }
+  .lockup { flex: 1 1 100%; min-width: 0; margin-right: 0; }
+  .brand-actions { width: 100%; display: flex; flex-wrap: wrap; gap: 8px; }
+  .site-search { order: 3; flex: 1 1 100%; min-width: 0; }
+  .site-search input { width: 100%; min-width: 0; }
+}
+@media (max-width: 560px) {
+  .wrap { padding-left: max(14px, env(safe-area-inset-left, 0px)); padding-right: max(14px, env(safe-area-inset-right, 0px)); }
+  .hero-in { gap: 18px; padding-block: 24px 28px; }
+  .hero h1 { font-size: clamp(1.8rem, 7.4vw, 2.15rem); }
+  .hero .lead { font-size: 1rem; }
+  .hero-art { max-width: 360px; }
+  .hero-stats > div { padding: 12px; }
+  .hero-stats b { font-size: 1.25rem; }
+  .corners { grid-template-columns: minmax(0, 1fr); }
+  .section { padding-block: 30px 8px; }
+  .gov-strip-in { align-items: flex-start; padding-block: 8px; }
+  .gs-tools { gap: 8px 6px; }
+  .gs-tools > * + *::before { margin: 0 4px; }
+  .brandbar-in { gap: 10px; padding-block: 12px; }
+  .lockup-name { font-size: 1.35rem; }
+  .lockup-tag { font-size: .75rem; }
+  .brand-actions { align-items: stretch; }
+  .site-search input { font-size: 16px; }
+  .ribbon-in { align-items: flex-start; }
+  .ribbon-msg { flex: 1 1 100%; margin-right: 0; }
+  .ribbon-tools { flex-wrap: wrap; }
+  .page-hero-in { padding-block: 22px; }
+  .btn, .rbtn, input, select, textarea { max-width: 100%; }
+}
 </style>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+</head>
+<body>
+
 <div id="app"></div>
 <div class="toasts" id="toasts" role="status" aria-live="polite"></div>
 <div id="modal-root"></div>
@@ -2506,7 +2546,7 @@ function searchIndex() {
 }
 
 /* ---------- theme, language, reset ---------- */
-function isDark() { const a = document.documentElement.dataset.theme; if (a) return a === 'dark'; return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches); }
+function isDark() { return document.documentElement.dataset.theme === 'dark'; }
 function setTheme(m) { document.documentElement.dataset.theme = m; store.set('theme', m); refresh(); }
 function setLang(l) { App.lang = l; store.set('lang', l); refresh(); }
 function resetDemo() {
@@ -2519,7 +2559,7 @@ function resetDemo() {
 
 /* ---------- boot ---------- */
 function boot() {
-  const th = store.get('theme'); if (th === 'light' || th === 'dark') document.documentElement.dataset.theme = th;
+  const th = store.get('theme'); if (th === 'light' || th === 'dark') document.documentElement.dataset.theme = th; else document.documentElement.dataset.theme = 'light';
   const fs = store.get('fs'); if (fs === '-1' || fs === '1') document.documentElement.dataset.fs = fs;
   const lg = store.get('lang'); if (lg === 'hi') App.lang = 'hi';
   App.state = Core.createState();
@@ -3815,3 +3855,5 @@ P['university-certs'] = { area: 'univ', render() {
 
 boot();
 </script>
+</body>
+</html>
