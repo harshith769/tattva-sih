@@ -1,7 +1,11 @@
 {
     "cleanUrls":  true,
     "redirects":  [
-
+                      {
+                          "source":  "/video",
+                          "destination":  "/",
+                          "permanent":  false
+                      }
                   ],
     "headers":  [
                     {
